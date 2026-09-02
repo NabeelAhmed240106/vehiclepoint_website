@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Services - Vehicle Point</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b8c4ff",
+                        "secondary": "#555f6f",
+                        "on-secondary-container": "#596373",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#757684",
+                        "background": "#f8f9fb",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "primary": "#00288e",
+                        "surface-container-high": "#e7e8ea",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#3755c3",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "tertiary-container": "#872d00",
+                        "surface-bright": "#f8f9fb",
+                        "surface-container-low": "#f3f4f6",
+                        "primary-fixed": "#dde1ff",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#444653",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#121c2a",
+                        "surface-container": "#edeef0",
+                        "secondary-container": "#d6e0f3",
+                        "outline-variant": "#c4c5d5",
+                        "surface-variant": "#e1e2e4",
+                        "surface-container-highest": "#e1e2e4",
+                        "surface": "#f8f9fb",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f0f1f3",
+                        "on-tertiary-fixed": "#380d00",
+                        "primary-container": "#1e40af",
+                        "on-tertiary-container": "#ffa583",
+                        "on-primary-fixed": "#001453",
+                        "tertiary": "#611e00",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "on-primary-fixed-variant": "#173bab",
+                        "surface-dim": "#d9dadc",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-container": "#a8b8ff",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-background": "#191c1e",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1200px",
+                        "gutter": "24px",
+                        "section-padding": "80px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["\"Source Sans 3\""],
+                        "body-md": ["\"Source Sans 3\""],
+                        "label-md": ["\"Source Sans 3\""],
+                        "display-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-headline-md,
+        .font-display-lg,
+        .font-headline-lg,
+        .font-headline-lg-mobile {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .animate-fade-in-up {
+                animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .delay-100 {
+                animation-delay: 0.1s;
+            }
+
+            .delay-200 {
+                animation-delay: 0.2s;
+            }
+
+            .delay-300 {
+                animation-delay: 0.3s;
+            }
+
+            .reveal-on-scroll {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-link {
+                position: relative;
+                display: inline-block;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                transform: scaleX(0);
+                height: 2px;
+                bottom: -2px;
+                left: 0;
+                background-color: currentColor;
+                transform-origin: bottom right;
+                transition: transform 0.3s ease-out;
+            }
+
+            .nav-link:hover::after {
+                transform: scaleX(1);
+                transform-origin: bottom left;
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background antialiased pt-20">
+    <!-- TopNavBar -->
+    <header class="bg-surface-container-lowest fixed top-0 w-full border-b border-outline-variant z-50">
+        <div class="flex justify-between items-center h-20 max-w-container-max mx-auto px-gutter md:px-0">
+            <div
+                class="text-headline-md font-headline-md text-primary tracking-tight transition-opacity hover:opacity-80 cursor-pointer">
+                Vehicle Point
+            </div>
+            <nav class="hidden md:flex gap-6 items-center">
+                <a class="nav-link text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                    href="index.html">Home</a>
+                <a class="text-label-md font-label-md text-primary border-b-2 border-primary pb-1 cursor-pointer transition-all"
+                    href="services.html">Services</a>
+                <a class="nav-link text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                    href="gallery.html">Gallery</a>
+                <a class="nav-link text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                    href="contact.html">Contact</a>
+            </nav>
+            <button onclick="window.location.href='contact.html'"
+                class="bg-primary text-on-primary text-label-md font-label-md px-4 py-2 rounded hidden md:block hover:bg-primary-container hover:scale-[1.02] active:scale-[0.98] transition-all">
+                Book Appointment
+            </button>
+            <!-- Mobile Menu Toggle (Simplified) -->
+            <button class="md:hidden text-primary transition-transform hover:scale-110 active:scale-95">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section
+            class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto text-center border-b border-surface-variant">
+            <h1
+                class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-6 animate-fade-in-up">
+                Our Professional Services</h1>
+            <p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto animate-fade-in-up delay-100">
+                We provide all Mechanical services, complete Denting &amp; Painting services, and premium Car
+                Modification services for individual, corporate, and insurance vehicles. Our certified technicians ensure your vehicle performs at its peak and looks
+                exactly the way you want.
+            </p>
+        </section>
+        <!-- Mechanical Services Section (Bento Grid) -->
+        <section
+            class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto border-b border-surface-variant">
+            <div class="flex items-center gap-4 mb-10 reveal-on-scroll">
+                <span class="material-symbols-outlined text-primary text-4xl"
+                    style="font-variation-settings: 'FILL' 1;">build</span>
+                <h2 class="text-headline-md font-headline-md text-on-surface">All Mechanical Services</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-base">
+                <!-- Large Item -->
+                <div
+                    class="md:col-span-2 bg-surface-container-lowest border border-outline-variant p-8 flex flex-col justify-between group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-100 rounded-lg">
+                    <div>
+                        <h3 class="text-headline-md font-headline-md text-on-surface mb-4">Engine Diagnostics &amp;
+                            Repair</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mb-6">Advanced computer diagnostics
+                            paired with decades of hands-on experience to resolve complex engine issues accurately and
+                            efficiently.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                <span class="text-body-md font-body-md">Complete diagnostic scans</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                <span class="text-body-md font-body-md">Timing belt &amp; chain replacement</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+                                <span class="text-body-md font-body-md">Head gasket repair</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="window.location.href='contact.html'"
+                        class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Book
+                        Engine Service</button>
+                </div>
+                <!-- Smaller Items -->
+                <div
+                    class="bg-surface-container-low border border-outline-variant p-6 flex flex-col justify-between group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-200 rounded-lg">
+                    <div>
+                        <h3 class="text-headline-md font-headline-md text-on-surface mb-4">Oil &amp; Filter Changes</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mb-6">Premium synthetic and
+                            conventional oil changes to maintain engine longevity.</p>
+                    </div>
+                    <button onclick="window.location.href='contact.html'"
+                        class="w-full border border-secondary text-secondary text-label-md font-label-md py-2 rounded group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">Schedule
+                        Oil Change</button>
+                </div>
+                <div
+                    class="bg-surface-container-low border border-outline-variant p-6 flex flex-col justify-between group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-300 rounded-lg">
+                    <div>
+                        <h3 class="text-headline-md font-headline-md text-on-surface mb-4">Brake Service</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mb-6">Comprehensive brake
+                            inspection, pad replacement, and rotor resurfacing.</p>
+                    </div>
+                    <button onclick="window.location.href='contact.html'"
+                        class="w-full border border-secondary text-secondary text-label-md font-label-md py-2 rounded group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">Book
+                        Brake Service</button>
+                </div>
+                <div
+                    class="bg-surface-container-low border border-outline-variant p-6 flex flex-col justify-between md:col-span-2 group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-100 rounded-lg">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h3 class="text-headline-md font-headline-md text-on-surface mb-4">Transmission &amp;
+                                Drivetrain</h3>
+                            <p class="text-body-md font-body-md text-on-surface-variant mb-6">Fluid flushes, clutch
+                                replacements, and complete transmission overhauls for smooth power delivery.</p>
+                        </div>
+                        <div class="flex-1 flex items-end">
+                            <button onclick="window.location.href='contact.html'"
+                                class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Schedule
+                                Drivetrain Check</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Bodywork Section (Cards) -->
+        <section class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal-on-scroll">
+                <span class="material-symbols-outlined text-primary text-4xl"
+                    style="font-variation-settings: 'FILL' 1;">directions_car</span>
+                <h2 class="text-headline-md font-headline-md text-on-surface">All Denting &amp; Painting Services</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <div
+                    class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-100">
+                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                        <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
+                            data-alt="Paintless Dent Removal at our workshop."
+                            src="assets/danting-3.jpeg" />
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">Paintless Dent Removal (PDR)
+                        </h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Efficient and
+                            cost-effective removal of minor dents and dings without compromising your vehicle's original
+                            factory finish.</p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Request
+                            PDR Quote</button>
+                    </div>
+                </div>
+                <div
+                    class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-200">
+                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                        <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
+                            data-alt="Professional Respray work at our workshop."
+                            src="assets/danting-4.jpeg" />
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">Professional Resprays &amp;
+                            Color Matching</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Computerized color
+                            matching and high-quality paint application in our state-of-the-art spray booths for a
+                            flawless finish.</p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Book
+                            Paint Consultation</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Car Modifications Section -->
+        <section class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal-on-scroll">
+                <span class="material-symbols-outlined text-primary text-4xl"
+                    style="font-variation-settings: 'FILL' 1;">tune</span>
+                <h2 class="text-headline-md font-headline-md text-on-surface">Car Modification Services</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                <div
+                    class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-100">
+                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                        <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
+                            data-alt="Custom car tuning"
+                            src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=800&h=600" />
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">Exterior &amp; Interior Modifications</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Transform the look
+                            of your vehicle with premium aftermarket body kits, interior upgrades, custom upholstery, and visual enhancements.
+                        </p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Consult
+                            for Styling</button>
+                    </div>
+                </div>
+                <div
+                    class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-200">
+                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                        <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
+                            data-alt="Engine tuning"
+                            src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800&h=600" />
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">PPF &amp; Car Wraps</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Protect your car's original paint with high-quality Paint Protection Film (PPF) or give it a completely new look with our premium car wrapping services.</p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Explore Wraps &amp; PPF</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="bg-primary text-on-primary py-16 px-margin-mobile md:px-0 mt-8 reveal-on-scroll">
+            <div class="max-w-container-max mx-auto text-center flex flex-col items-center">
+                <h2
+                    class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg mb-4">
+                    Ready for Professional Care?</h2>
+                <p class="text-body-lg font-body-lg mb-8 opacity-90 max-w-xl">Schedule your service today and experience
+                    the Vehicle Point standard of precision and reliability.</p>
+                <button onclick="window.location.href='contact.html'"
+                    class="bg-surface-container-lowest text-primary text-label-md font-label-md px-8 py-4 rounded font-bold hover:bg-surface-variant hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-sm">
+                    Book Your Appointment Now
+                </button>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-surface-container-low w-full py-section-padding border-t border-outline-variant mt-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-base max-w-container-max mx-auto px-gutter md:px-0">
+            <div>
+                <div class="text-headline-md font-headline-md text-on-surface mb-4">Vehicle Point</div>
+                <p class="text-body-md font-body-md text-on-surface-variant">© 2024 Vehicle Point. All rights reserved.
+                    Professional Automotive Care.</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <span
+                    class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer">Business
+                    Hours: Mon-Sat 8:00 AM - 6:00 PM</span>
+                <span
+                    class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer">Plot No. 224, Block L, Arfat Town, North Nazimabad, Karachi</span>
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all duration-200"
+                    href="https://wa.me/923253498175" target="_blank">WhatsApp: 0325-3498175</a>
+            </div>
+            <!-- Optional 3rd column for balance if needed, left empty as per JSON structure mapping loosely -->
+            <div></div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Respect prefers-reduced-motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!prefersReducedMotion) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.15
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                const revealElements = document.querySelectorAll('.reveal-on-scroll');
+                revealElements.forEach(el => observer.observe(el));
+            } else {
+                // If user prefers reduced motion, make elements visible immediately
+                const revealElements = document.querySelectorAll('.reveal-on-scroll');
+                revealElements.forEach(el => el.classList.add('is-visible'));
+            }
+        });
+    </script>
+</body>
+
+</html>

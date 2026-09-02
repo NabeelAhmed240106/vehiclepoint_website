@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Gallery - Vehicle Point</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-primary": "#b8c4ff",
+            "secondary": "#555f6f",
+            "on-secondary-container": "#596373",
+            "tertiary-fixed": "#ffdbce",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#757684",
+            "background": "#f8f9fb",
+            "secondary-fixed-dim": "#bdc7d9",
+            "primary": "#00288e",
+            "surface-container-high": "#e7e8ea",
+            "error": "#ba1a1a",
+            "surface-tint": "#3755c3",
+            "tertiary-fixed-dim": "#ffb59a",
+            "tertiary-container": "#872d00",
+            "surface-bright": "#f8f9fb",
+            "surface-container-low": "#f3f4f6",
+            "primary-fixed": "#dde1ff",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#444653",
+            "primary-fixed-dim": "#b8c4ff",
+            "on-surface": "#191c1e",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed": "#121c2a",
+            "surface-container": "#edeef0",
+            "secondary-container": "#d6e0f3",
+            "outline-variant": "#c4c5d5",
+            "surface-variant": "#e1e2e4",
+            "surface-container-highest": "#e1e2e4",
+            "surface": "#f8f9fb",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#f0f1f3",
+            "on-tertiary-fixed": "#380d00",
+            "primary-container": "#1e40af",
+            "on-tertiary-container": "#ffa583",
+            "on-primary-fixed": "#001453",
+            "tertiary": "#611e00",
+            "on-tertiary-fixed-variant": "#802a00",
+            "on-primary-fixed-variant": "#173bab",
+            "surface-dim": "#d9dadc",
+            "on-secondary-fixed-variant": "#3d4756",
+            "inverse-surface": "#2e3132",
+            "on-primary-container": "#a8b8ff",
+            "secondary-fixed": "#d9e3f6",
+            "on-background": "#191c1e",
+            "on-error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "container-max": "1200px",
+            "gutter": "24px",
+            "section-padding": "80px",
+            "base": "8px"
+          },
+          "fontFamily": {
+            "headline-lg": ["Montserrat"],
+            "headline-lg-mobile": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "body-lg": ["\"Source Sans 3\""],
+            "body-md": ["\"Source Sans 3\""],
+            "label-md": ["\"Source Sans 3\""],
+            "display-lg": ["Montserrat"]
+          },
+          "fontSize": {
+            "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+            "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .font-headline-lg,
+    .font-headline-md,
+    .font-display-lg {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      grid-auto-flow: dense;
+    }
+
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-item.wide {
+        grid-column: span 1;
+      }
+    }
+  </style>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+
+      .transition-all,
+      .transition-transform,
+      .transition-colors,
+      .reveal-item,
+      .translate-y-4,
+      .translate-y-8 {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+    .reveal-item.is-visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .header-visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Header entrance
+      const header = document.querySelector('main > section:nth-child(1)');
+      if (header) setTimeout(() => header.classList.add('header-visible'), 100);
+
+      // Scroll reveal
+      const observerOptions = {
+        threshold: 0.1
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal-item').forEach(item => {
+        observer.observe(item);
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-background text-on-background antialiased flex flex-col min-h-screen">
+  <!-- TopNavBar -->
+  <nav
+    class="bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline fixed top-0 w-full z-50">
+    <div class="flex justify-between items-center h-20 max-w-container-max mx-auto px-gutter">
+      <div class="text-headline-md font-headline-md text-primary dark:text-primary-fixed flex items-center gap-2">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+        Vehicle Point
+      </div>
+      <ul class="hidden md:flex gap-6 items-center">
+        <li><a
+            class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 transition-all"
+            href="index.html">Home</a></li>
+        <li><a
+            class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 transition-all"
+            href="services.html">Services</a></li>
+        <li><a
+            class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 text-label-md font-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 transition-all"
+            href="gallery.html">Gallery</a></li>
+        <li><a
+            class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 transition-all"
+            href="contact.html">Contact</a></li>
+      </ul>
+      <button onclick="window.location.href='contact.html'"
+        class="hidden md:flex bg-primary text-on-primary text-label-md font-label-md px-4 py-2 rounded border border-transparent hover:bg-primary-container transition-colors items-center gap-2 hover:shadow-md active:scale-95 transition-all duration-200">
+        Book Appointment
+      </button>
+      <button class="md:hidden text-primary p-2">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </nav>
+  <!-- Main Content Canvas -->
+  <main
+    class="flex-grow pt-[104px] pb-section-padding px-margin-mobile md:px-gutter max-w-container-max mx-auto w-full">
+    <!-- Header Section -->
+    <section class="mb-12 text-center md:text-left transition-all duration-1000 ease-out opacity-0 translate-y-4">
+      <h1 class="text-display-lg font-display-lg text-primary mb-4">Our Recent Work</h1>
+      <p class="text-body-lg font-body-lg text-secondary max-w-2xl">Browse our portfolio of comprehensive vehicle
+        repairs, maintenance, and restorations. At Vehicle Point, we pride ourselves on precision, transparency, and
+        delivering reliable results for every client.</p>
+    </section>
+    <!-- Denting Painting Section -->
+    <section
+      class="mb-8 mt-8 text-center md:text-left transition-all duration-1000 ease-out opacity-0 translate-y-4 reveal-item">
+      <h2 class="text-display-lg font-display-lg text-primary mb-4" style="font-size: 36px; line-height: 44px;">Denting
+        & Painting Transformations</h2>
+      <p class="text-body-lg font-body-lg text-secondary max-w-2xl">Witness the dramatic before and after results of our
+        expert denting and painting services. We bring your vehicle back to its original glory.</p>
+    </section>
+
+    <section class="gallery-grid mb-16">
+      <!-- Pair 1 -->
+      <div
+        class="gallery-item wide relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="flex h-64 md:h-96 w-full relative">
+          <div class="w-1/2 h-full relative border-r border-outline-variant bg-black">
+            <img class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              alt="Before Denting Painting 1" src="assets/before/Before-1.png" />
+            <span
+              class="absolute top-2 left-2 bg-surface text-on-surface text-label-md font-label-md px-3 py-1.5 rounded shadow-sm opacity-90 font-bold">Before</span>
+          </div>
+          <div class="w-1/2 h-full relative bg-black">
+            <img class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              alt="After Denting Painting 1" src="assets/after/After-2.png" />
+            <span
+              class="absolute top-2 right-2 bg-primary text-on-primary text-label-md font-label-md px-3 py-1.5 rounded shadow-sm opacity-90 font-bold">After</span>
+          </div>
+        </div>
+        <div class="p-4 bg-surface-container-lowest border-t border-outline-variant">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Full Body Denting & Paint Job</h3>
+          <p class="text-body-md font-body-md text-secondary">Flawless exterior restoration removing all dents and
+            applying a fresh, glossy coat.</p>
+        </div>
+      </div>
+
+      <!-- Pair 2 -->
+      <div
+        class="gallery-item wide relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="flex h-64 md:h-96 w-full relative">
+          <div class="w-1/2 h-full relative border-r border-outline-variant bg-black">
+            <img class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              alt="Before Denting Painting 2" src="assets/before/Before-2.png" />
+            <span
+              class="absolute top-2 left-2 bg-surface text-on-surface text-label-md font-label-md px-3 py-1.5 rounded shadow-sm opacity-90 font-bold">Before</span>
+          </div>
+          <div class="w-1/2 h-full relative bg-black">
+            <img class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              alt="After Denting Painting 2" src="assets/after/After-3.png" />
+            <span
+              class="absolute top-2 right-2 bg-primary text-on-primary text-label-md font-label-md px-3 py-1.5 rounded shadow-sm opacity-90 font-bold">After</span>
+          </div>
+        </div>
+        <div class="p-4 bg-surface-container-lowest border-t border-outline-variant">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Collision Damage Repair</h3>
+          <p class="text-body-md font-body-md text-secondary">Expert realignment and painting to completely erase signs
+            of collision impact.</p>
+        </div>
+      </div>
+
+      <!-- Pair 3 -->
+      <div
+        class="gallery-item wide relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="flex h-64 md:h-96 w-full relative">
+          <div class="w-1/2 h-full relative border-r border-outline-variant bg-black">
+            <img class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              alt="Before Denting Painting 3" src="assets/before/Before-3.png" />
+            <span
+              class="absolute top-2 left-2 bg-surface text-on-surface text-label-md font-label-md px-3 py-1.5 rounded shadow-sm opacity-90 font-bold">Before</span>
+          </div>
+          <div class="w-1/2 h-full relative bg-black">
+            <img class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              alt="After Denting Painting 3" src="assets/after/After-1.png" />
+            <span
+              class="absolute top-2 right-2 bg-primary text-on-primary text-label-md font-label-md px-3 py-1.5 rounded shadow-sm opacity-90 font-bold">After</span>
+          </div>
+        </div>
+        <div class="p-4 bg-surface-container-lowest border-t border-outline-variant">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Scratch & Dent Removal</h3>
+          <p class="text-body-md font-body-md text-secondary">Precision dent pulling and seamless color matching for a
+            perfect finish.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other Services Heading -->
+    <section
+      class="mb-8 mt-16 text-center md:text-left transition-all duration-1000 ease-out opacity-0 translate-y-4 reveal-item">
+      <h2 class="text-display-lg font-display-lg text-primary mb-4" style="font-size: 36px; line-height: 44px;">Other
+        Maintenance & Repairs</h2>
+      <p class="text-body-lg font-body-lg text-secondary max-w-2xl">Explore our wide range of professional mechanical
+        services and deep cleaning solutions.</p>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid">
+      <!-- Item 1: Wide Before & After -->
+      <div
+        class="gallery-item wide relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="flex h-64 md:h-80 w-full relative">
+          <div class="w-1/2 h-full relative border-r border-outline-variant">
+            <img
+              class="w-full h-full object-cover grayscale brightness-75 transition-transform duration-500 group-hover:scale-105"
+              data-alt="Before denting painting" src="assets/danting-5.jpeg" />
+            <span
+              class="absolute top-2 left-2 bg-surface text-on-surface text-label-md font-label-md px-2 py-1 rounded shadow-sm opacity-90">Before</span>
+          </div>
+          <div class="w-1/2 h-full relative">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              data-alt="After denting painting" src="assets/danting-1.png" />
+            <span
+              class="absolute top-2 right-2 bg-primary text-on-primary text-label-md font-label-md px-2 py-1 rounded shadow-sm opacity-90">After</span>
+          </div>
+        </div>
+        <div class="p-4 bg-surface-container-lowest">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Collision Repair &amp; Paint Match</h3>
+          <p class="text-body-md font-body-md text-secondary">Complete restoration of front bumper and quarter panel,
+            featuring precise color matching and structural realignment.</p>
+        </div>
+      </div>
+      <!-- Item 2: Standard Engine Bay -->
+      <div
+        class="gallery-item relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT flex flex-col reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="h-48 w-full relative">
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            data-alt="A close-up, highly detailed photograph of a pristine, freshly detailed car engine bay inside a professional mechanic shop. The metal components gleam under bright, even fluorescent lighting. The focus is on a new set of spark plugs and polished manifold. The aesthetic is clean, technical, and trustworthy."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpxA3AHq27DO9o91VKwt5u-3UmmyUWZG1RuzN-VryCKqT019j_WAHpenxVADA0MVW2HCbjyun8HzB4zPT9d7vG6rRfVM_tcvzMJfGjCq0E_AMhLBn78NKxymbqiIiSzp7zbwjw6WoXmj22qN-nbNa9tv17jCQt2gYRrrMQ1BWtmUhmZk8xDItIwKUGmBdtIjG1xoxYWA4q0j4HEHjuKzQwCBjvb0eGzPPaYswk6F9RJwwVW4upOMMhyQ" />
+        </div>
+        <div class="p-4 flex-grow bg-surface-container-lowest">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Engine Diagnostics &amp; Overhaul</h3>
+          <p class="text-body-md font-body-md text-secondary">Thorough diagnostic check followed by a complete top-end
+            rebuild ensuring optimal performance.</p>
+        </div>
+      </div>
+      <!-- Item 3: Standard Suspension -->
+      <div
+        class="gallery-item relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT flex flex-col reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="h-48 w-full relative">
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            data-alt="A professional shot taken from underneath a vehicle raised on a hydraulic lift in a tidy garage. The focus is on a newly installed suspension system, with bright new shocks and struts contrasting against the older undercarriage. The lighting is focused and practical, highlighting the mechanical precision of the installation."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPlIZwj3kxWosZ3cDjFSa-wCau23_lDG3kwGbl7296WkvMKH0xbdraqT5ZPIzDrI2V3bMo5NPsy5NmtByynHcnbyAlETvweGrtICyxvW6FsgVXk2zN1RgkYzRcYl9WrPJbVSa0qSCHLwWE8LEQqWYRdNR0WfCYW6AmusJD5phPeeqKjO4AgMUt7iHopngzMfyaNZDH2oz5jRkWMY8V77SxnU9gTFu8qz5uRWprDlYMoZ33emlvv6FcKQ" />
+        </div>
+        <div class="p-4 flex-grow bg-surface-container-lowest">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Suspension Upgrade</h3>
+          <p class="text-body-md font-body-md text-secondary">Installation of OEM-equivalent struts and control arms for
+            restored ride comfort.</p>
+        </div>
+      </div>
+      <!-- Item 4: Wide Workshop Environment -->
+      <div
+        class="gallery-item wide relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="h-64 md:h-80 w-full relative">
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            data-alt="A wide, establishing shot of a modern, immaculately clean automotive repair workshop during business hours. Several cars are on lifts being serviced by mechanics in uniform. The floor is spotless gray epoxy. The lighting is bright and evenly distributed, conveying a sense of order, reliability, and high-end professional service."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6dPZpicqRNl7lkNDOuQBdX6uo6EJlX7MGmmYSVlhh63AboAr2W8ZX_kysLyGXBuiGnv0ps4IFnQT52XyFiE9q_3T_EqqWEv92qtiuBYojuO2kpWNyEemow6SGbk0h9DKTVbvcz1nT9PUrXjXcDnjFNqy8NWw-37UkJVf8P5AeWURrB5yP1YirrUTj4x0WL9zeOMcLLbLSaUeoEArIBg5hH5-LJqveD28MmNuGFzWNHpIvYm3X_-IFng" />
+        </div>
+        <div class="p-4 bg-surface-container-lowest">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Our State-of-the-Art Facility</h3>
+          <p class="text-body-md font-body-md text-secondary">Equipped with the latest diagnostic tools and multiple
+            service bays to ensure efficient, top-tier maintenance for every vehicle that comes through our doors.</p>
+        </div>
+      </div>
+      <!-- Item 5: Standard Brakes -->
+      <div
+        class="gallery-item relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT flex flex-col reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="h-48 w-full relative">
+          <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            data-alt="A close-up shot of a mechanic's gloved hands installing a brand new, shiny brake rotor and bright red caliper onto a vehicle hub. The wheel is removed, and the workshop background is slightly blurred. The lighting emphasizes the clean, metallic textures of the new parts, indicating quality and safety."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGkJLOCpGY8Fx_EfjWSClDLsPyMelQZ8OHXhIQxXpYwyN7cZsjjs8NLOgYpx5OGtNhN9iAat37515n8g3Rtjtj_CDjN-6mSVFZGsiVllSHkzR-80TXF_8eD9RUtMHecqkePa3juywJE6Ipqen6vwydsmDrQbM6JRGT4n5Wa1hlwOgvmHW_xZDI_DDqoyuywifpUrPpwDMZZz-PpVitqvHd2bv5dyOXEaU4za726c4VZo_xMKhzDu3Cww" />
+        </div>
+        <div class="p-4 flex-grow bg-surface-container-lowest">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Brake System Replacement</h3>
+          <p class="text-body-md font-body-md text-secondary">Full rotor and pad replacement for enhanced safety and
+            stopping power.</p>
+        </div>
+      </div>
+      <!-- Item 6: Before & After Detailing -->
+      <div
+        class="gallery-item relative group overflow-hidden border border-outline-variant bg-surface-container-lowest rounded-DEFAULT flex flex-col reveal-item opacity-0 translate-y-8 transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-lg transition-transform">
+        <div class="flex h-48 w-full relative">
+          <div class="w-1/2 h-full relative border-r border-outline-variant">
+            <img
+              class="w-full h-full object-cover grayscale brightness-75 transition-transform duration-500 group-hover:scale-105"
+              data-alt="A split image showing a cloudy, heavily oxidized car headlight on the left, looking dull and unsafe. The workshop setting provides a neutral background."
+              src="assets/before/Before-2.png" />
+            <span
+              class="absolute top-2 left-2 bg-surface text-on-surface text-label-md font-label-md px-1 py-0.5 text-xs rounded opacity-90">Before</span>
+          </div>
+          <div class="w-1/2 h-full relative">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              data-alt="The right side shows the same headlight, now crystal clear and polished to a factory-new finish, reflecting the bright workshop lights. A clear demonstration of professional restoration."
+              src="assets/after/After-3.png" />
+            <span
+              class="absolute top-2 right-2 bg-primary text-on-primary text-label-md font-label-md px-1 py-0.5 text-xs rounded opacity-90">After</span>
+          </div>
+        </div>
+        <div class="p-4 flex-grow bg-surface-container-lowest">
+          <h3 class="text-headline-md font-headline-md text-on-surface mb-1">Headlight Restoration</h3>
+          <p class="text-body-md font-body-md text-secondary">Multi-stage polishing process to restore clarity and
+            night-time visibility.</p>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section -->
+    <section
+      class="mt-16 bg-surface-container-low border border-outline-variant rounded-DEFAULT p-8 text-center flex flex-col items-center justify-center">
+      <h2 class="text-headline-lg font-headline-lg text-primary mb-4">Ready for Professional Care?</h2>
+      <p class="text-body-lg font-body-lg text-secondary mb-6 max-w-lg">Experience the Vehicle Point standard. Schedule
+        your next maintenance or repair appointment today.</p>
+      <button onclick="window.location.href='contact.html'"
+        class="bg-primary text-on-primary text-label-md font-label-md px-8 py-3 rounded border border-transparent hover:bg-primary-container transition-colors hover:shadow-md active:scale-95 transition-all duration-200">
+        Book Appointment
+      </button>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer
+    class="bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline w-full py-section-padding mt-auto">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-base max-w-container-max mx-auto px-gutter text-center md:text-left">
+      <div class="flex flex-col gap-2">
+        <div
+          class="text-headline-md font-headline-md text-on-surface dark:text-inverse-on-surface mb-2 flex items-center justify-center md:justify-start gap-2">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+          Vehicle Point
+        </div>
+        <p class="text-body-md font-body-md text-secondary">© 2024 Vehicle Point. All rights reserved. Professional
+          Automotive Care.</p>
+      </div>
+      <div class="flex flex-col gap-2 md:col-span-2 md:items-end justify-center">
+        <ul class="flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+          <li><a
+              class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md hover:text-primary dark:hover:text-on-primary-container transition-all duration-200"
+              href="#">Business Hours: Mon-Sat 8:00 AM - 6:00 PM</a></li>
+          <li><a
+              class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md hover:text-primary dark:hover:text-on-primary-container transition-all duration-200"
+              href="#">Plot No. 224, Block L, Arfat Town, North Nazimabad, Karachi</a></li>
+          <li><a
+              class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md hover:text-primary dark:hover:text-on-primary-container transition-all duration-200"
+              href="https://wa.me/923253498175" target="_blank">WhatsApp: 0325-3498175</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

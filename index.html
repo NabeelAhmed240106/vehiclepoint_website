@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vehicle Point - Expert Automotive Care</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e1e2e4",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f3f4f6",
+                        "primary-fixed": "#dde1ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#802a00",
+                        "surface-variant": "#e1e2e4",
+                        "primary": "#00288e",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "background": "#f8f9fb",
+                        "surface-tint": "#3755c3",
+                        "surface-container": "#edeef0",
+                        "inverse-surface": "#2e3132",
+                        "inverse-primary": "#b8c4ff",
+                        "on-secondary-container": "#596373",
+                        "primary-container": "#1e40af",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001453",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#a8b8ff",
+                        "tertiary-container": "#872d00",
+                        "tertiary": "#611e00",
+                        "outline-variant": "#c4c5d5",
+                        "on-secondary-fixed": "#121c2a",
+                        "primary-fixed-dim": "#b8c4ff",
+                        "inverse-on-surface": "#f0f1f3",
+                        "on-tertiary-fixed": "#380d00",
+                        "secondary-fixed": "#d9e3f6",
+                        "surface-dim": "#d9dadc",
+                        "secondary": "#555f6f",
+                        "outline": "#757684",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "on-primary-fixed-variant": "#173bab",
+                        "surface-bright": "#f8f9fb",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface-container-high": "#e7e8ea",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "on-surface-variant": "#444653",
+                        "secondary-container": "#d6e0f3",
+                        "on-tertiary-container": "#ffa583",
+                        "on-surface": "#191c1e",
+                        "surface": "#f8f9fb",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-padding": "80px",
+                        "margin-mobile": "16px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-md": ["\"Source Sans 3\""],
+                        "headline-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "label-md": ["\"Source Sans 3\""],
+                        "body-lg": ["\"Source Sans 3\""]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .font-headline-md,
+        .font-display-lg,
+        .font-headline-lg {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            }
+
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .delay-100 {
+                transition-delay: 100ms;
+            }
+
+            .delay-200 {
+                transition-delay: 200ms;
+            }
+
+            .hero-animate {
+                animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+                opacity: 0;
+            }
+
+            .hero-animate-1 {
+                animation-delay: 0.1s;
+            }
+
+            .hero-animate-2 {
+                animation-delay: 0.3s;
+            }
+
+            .hero-animate-3 {
+                animation-delay: 0.5s;
+            }
+
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .reveal,
+            .hero-animate {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background pt-20">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline z-50">
+        <div class="flex justify-between items-center h-20 max-w-container-max mx-auto px-gutter">
+            <a class="text-headline-md font-headline-md text-primary dark:text-primary-fixed" href="#">Vehicle Point</a>
+            <div class="hidden md:flex space-x-8">
+                <a class="text-label-md font-label-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 cursor-pointer active:opacity-80 transition-all"
+                    href="index.html">Home</a>
+                <a class="text-label-md font-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80"
+                    href="services.html">Services</a>
+                <a class="text-label-md font-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80"
+                    href="gallery.html">Gallery</a>
+                <a class="text-label-md font-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80"
+                    href="contact.html">Contact</a>
+            </div>
+            <button onclick="window.location.href='contact.html'"
+                class="bg-primary text-on-primary px-6 py-2 rounded font-label-md text-label-md hover:bg-primary-container hover:scale-[1.02] hover:shadow-md transition-all duration-300 hidden md:block">
+                Book Appointment
+            </button>
+            <button class="md:hidden text-primary">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="relative h-[80vh] flex items-center justify-center bg-surface-container-highest">
+        <div class="absolute inset-0 z-0">
+            <img alt="Expert Automotive Care Workshop" class="w-full h-full object-cover opacity-90"
+                data-alt="A brightly lit, professional modern automotive workshop with several mechanics working on a high-end silver sports car on a lift. The environment is clean, structured, and organized, conveying a sense of reliability and expert mechanical service."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCURERf5M_3E9DOxU28NIJHKx7IM7ka18C6vcuIAPYdxuvsJaU3Q50Qu_ocH8EAanXk1ZqOWdCZ4mC6H1NWKu_smDJMLQ33KKGyrrYDBd-36aAlr0IrMVkx1QnPL__XO__1_DszOiGJoOA87MdbIQBNUBbFFkPygqFuWgYJ8R7P_7L8W5lML-UagLKsrBgZ3J0SqPqwPGiaYvWm4cUXFp7s1AtCXwmw3AX8daFrW85ggrjR3xNYRkm7Kw" />
+            <div class="absolute inset-0 bg-background/60"></div>
+        </div>
+        <div class="relative z-10 text-center max-w-3xl px-margin-mobile md:px-gutter">
+            <h1 class="text-display-lg font-display-lg text-on-background mb-6 hero-animate hero-animate-1">Expert Care
+                for Your Vehicle.</h1>
+            <p class="text-body-lg font-body-lg text-on-surface-variant mb-10 hero-animate hero-animate-2">Professional
+                Mechanical, Denting &amp; Painting, and Car Modification Services for all kinds of vehicles including individual, corporate, and insurance.</p>
+            <button onclick="window.location.href='contact.html'"
+                class="bg-primary text-on-primary px-8 py-4 rounded font-label-md text-label-md text-lg hover:bg-primary-container hover:scale-[1.02] hover:shadow-lg transition-all duration-300 hero-animate hero-animate-3">
+                Book an Appointment
+            </button>
+        </div>
+    </section>
+    <!-- About Workshop Section -->
+    <section class="py-section-padding bg-surface-container-low" id="about">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter text-center reveal">
+            <h2 class="text-headline-lg font-headline-lg text-on-background mb-4">Our Professional Workshop</h2>
+            <div class="w-24 h-1 bg-primary mx-auto mb-8"></div>
+            <p class="text-body-lg font-body-lg text-on-surface-variant max-w-4xl mx-auto mb-6">
+                Vehicle Point is not just an ordinary shop; we operate a fully covered, well-maintained, and state-of-the-art workshop. 
+                We have a dedicated and professional team assigned to every specific job, ensuring that every task is executed with precision and care. 
+                We cater to all kinds of vehicles and proudly serve individual car owners, corporate fleets, and insurance companies.
+            </p>
+            <p class="text-body-lg font-body-lg text-on-surface-variant max-w-4xl mx-auto font-semibold text-primary">
+                Trusted by the corporate sector and leading insurance providers.
+            </p>
+        </div>
+    </section>
+    <!-- Services Grid -->
+    <section class="py-section-padding max-w-container-max mx-auto px-margin-mobile md:px-gutter" id="services">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-headline-lg font-headline-lg text-on-background mb-4">Our Services</h2>
+            <div class="w-24 h-1 bg-primary mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Mechanical Services Card -->
+            <div
+                class="border border-outline-variant rounded-lg overflow-hidden bg-surface-container-lowest flex flex-col group hover:border-primary transition-all duration-300 reveal delay-100 hover:shadow-lg">
+                <div class="h-64 overflow-hidden relative">
+                    <img alt="Mechanical Services"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="A middle-aged professional mechanic in a dark blue uniform inspecting an engine bay with a flashlight. The scene is well-lit, emphasizing precision, experience, and careful diagnostic work in a clean garage environment."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw_Q8wQqKW1YgXPglBZRokR_xdUwOIyUuJplT3loD6tlepqJuP4654BjgBlG_yHeEDpACKdoLZqUp0-4_258heT5r4ztPEsnAtPAWsidfawbaGj3PZ2sNCKz3ec2UB-JmdwjT_uLYJ6ctgwXDPhoWB0JdDEbwvFslXZBIRrELRnu-DhAc6r1sa1aWWvNK821SF2Iiot0dAYBGouWsjT_TiJMHj-tCzvyys_QdRcqcLW-K_xEMpk6w5Mw" />
+                </div>
+                <div class="p-8 flex-grow">
+                    <h3
+                        class="text-headline-md font-headline-md text-on-background mb-4 transition-colors duration-300 group-hover:text-primary">
+                        All Mechanical Services</h3>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Engine diagnostics &amp;
+                                repair</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Brake system overhaul</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Comprehensive routine
+                                maintenance</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bodywork & Paint Card -->
+            <div
+                class="border border-outline-variant rounded-lg overflow-hidden bg-surface-container-lowest flex flex-col group hover:border-primary transition-all duration-300 reveal delay-200 hover:shadow-lg">
+                <div class="h-64 overflow-hidden relative">
+                    <img alt="Bodywork &amp; Paint Services"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Our professional technicians working on denting and painting services."
+                        src="assets/danting-1.png" />
+                </div>
+                <div class="p-8 flex-grow">
+                    <h3
+                        class="text-headline-md font-headline-md text-on-background mb-4 transition-colors duration-300 group-hover:text-primary">
+                        All Denting &amp; Painting Services</h3>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Expert collision
+                                repair</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Factory-match paint
+                                restoration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Precision dent
+                                removal</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Car Modifications Card -->
+            <div
+                class="border border-outline-variant rounded-lg overflow-hidden bg-surface-container-lowest flex flex-col group hover:border-primary transition-all duration-300 reveal delay-300 hover:shadow-lg">
+                <div class="h-64 overflow-hidden relative">
+                    <img alt="Car Modifications"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="A custom tuned sports car in a modern garage with neon lights, showing upgraded rims and aerodynamic body kit."
+                        src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=800&h=600" />
+                </div>
+                <div class="p-8 flex-grow">
+                    <h3
+                        class="text-headline-md font-headline-md text-on-background mb-4 transition-colors duration-300 group-hover:text-primary">
+                        Car Modification Services</h3>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Exterior &amp; Interior styling</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">PPF (Paint Protection Film)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined text-primary mr-3 text-[20px]">check_circle</span>
+                            <span class="text-body-md font-body-md text-on-surface-variant">Premium Car Wraps</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery Section -->
+    <section class="py-section-padding bg-surface-container-low" id="gallery">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-headline-lg font-headline-lg text-on-background mb-4">Our Recent Work</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 md:p-8 reveal delay-100">
+                <h3 class="text-headline-md font-headline-md text-center mb-6 text-on-surface-variant">Restoration
+                    Quality</h3>
+                <div class="rounded-lg overflow-hidden border border-outline-variant group cursor-default">
+                    <img alt="Before and After Bodywork"
+                        class="w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                        data-alt="Denting and painting work shown at our workshop."
+                        src="assets/daniting-2.png" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="py-section-padding max-w-container-max mx-auto px-margin-mobile md:px-gutter" id="contact">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="reveal">
+                <h2 class="text-headline-lg font-headline-lg text-on-background mb-6">Get in Touch</h2>
+                <p class="text-body-md font-body-md text-on-surface-variant mb-8">Ready to book an appointment or need
+                    an estimate? Fill out the form or reach out directly.</p>
+                <div class="space-y-6 mb-8">
+                    <div class="flex items-center">
+                        <span class="material-symbols-outlined text-primary mr-4 text-2xl">location_on</span>
+                        <span class="text-body-md font-body-md">Plot No. 224, Block L, Arfat Town, North Nazimabad, Karachi, Pakistan. Behind Taimurya Police Station</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="material-symbols-outlined text-primary mr-4 text-2xl">schedule</span>
+                        <span class="text-body-md font-body-md">Mon-Sat 8:00 AM - 6:00 PM</span>
+                    </div>
+                </div>
+                <button onclick="window.open('https://wa.me/923253498175', '_blank')"
+                    class="flex items-center justify-center w-full md:w-auto bg-[#25D366] text-white px-8 py-3 rounded font-label-md text-label-md hover:bg-opacity-90 hover:scale-[1.02] hover:shadow-lg transition-all duration-300 border-none">
+                    <span class="material-symbols-outlined mr-2">chat</span>
+                    WhatsApp (0325-3498175)
+                </button>
+            </div>
+            <div class="bg-surface-container-low p-8 rounded-lg border border-outline-variant reveal delay-100">
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="name">Full
+                            Name</label>
+                        <input
+                            class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                            id="name" type="text" />
+                    </div>
+                    <div>
+                        <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="phone">Phone
+                            Number</label>
+                        <input
+                            class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                            id="phone" type="tel" />
+                    </div>
+                    <div>
+                        <label class="block text-label-md font-label-md text-on-surface-variant mb-2"
+                            for="service">Required Service</label>
+                        <select
+                            class="w-full bg-surface-container-lowest border border-outline-variant rounded p-3 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                            id="service">
+                            <option>Mechanical Repair</option>
+                            <option>Bodywork &amp; Paint</option>
+                            <option>Routine Maintenance</option>
+                            <option>Car Modifications</option>
+                            <option>Other / Estimate</option>
+                        </select>
+                    </div>
+                    <button
+                        class="w-full bg-primary text-on-primary px-6 py-3 rounded font-label-md text-label-md hover:bg-primary-container hover:scale-[1.02] hover:shadow-lg transition-all duration-300"
+                        type="submit">
+                        Request Appointment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer
+        class="bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline w-full py-section-padding">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-base max-w-container-max mx-auto px-gutter">
+            <div class="mb-8 md:mb-0">
+                <div class="text-headline-md font-headline-md text-on-surface dark:text-inverse-on-surface mb-4">Vehicle
+                    Point</div>
+                <p class="text-body-md font-body-md text-primary dark:text-primary-fixed-dim">
+                    © 2024 Vehicle Point. All rights reserved. Professional Automotive Care.
+                </p>
+            </div>
+            <div class="flex flex-col space-y-3">
+                <span
+                    class="text-label-md font-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-on-primary-container transition-all duration-200">Business
+                    Hours: Mon-Sat 8:00 AM - 6:00 PM</span>
+                <span
+                    class="text-label-md font-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-on-primary-container transition-all duration-200">Plot No. 224, Block L, Arfat Town, North Nazimabad, Karachi</span>
+                <a href="https://wa.me/923253498175" target="_blank"
+                    class="text-label-md font-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-on-primary-container transition-all duration-200">WhatsApp: 0325-3498175</a>
+            </div>
+            <div class="flex flex-col space-y-3 md:items-end">
+                <!-- Additional quick links if needed, or left empty to balance grid as per spec -->
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
