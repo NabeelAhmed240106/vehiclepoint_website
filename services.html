@@ -120,6 +120,47 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        @keyframes floatSubtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); opacity: 0.8; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .animate-float {
+            animation: floatSubtle 4s ease-in-out infinite;
+        }
+
+        .pulse-whatsapp-ring {
+            animation: pulseRing 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+        }
+
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transform: skewX(-20deg);
+            transition: all 0.75s ease;
+        }
+
+        .shimmer-btn:hover::after {
+            left: 150%;
+            transition: all 0.75s ease;
+        }
+
         @media (prefers-reduced-motion: no-preference) {
             .animate-fade-in-up {
                 animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -150,6 +191,17 @@
                 transform: translateY(0);
             }
 
+            .reveal-scale {
+                opacity: 0;
+                transform: scale(0.94);
+                transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .reveal-scale.is-visible {
+                opacity: 1;
+                transform: scale(1);
+            }
+
             .nav-link {
                 position: relative;
                 display: inline-block;
@@ -174,6 +226,72 @@
             }
         }
 
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: #002B49;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loading-screen.hidden-loader {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-logo-pulse {
+            animation: pulseScale 2s ease-in-out infinite;
+        }
+
+        .loader-progress-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-progress-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: #ffffff;
+            border-radius: 9999px;
+            animation: loadProgress 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+
+        @keyframes pulseScale {
+            0%, 100% { transform: scale(1); opacity: 0.95; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            50% { width: 65%; }
+            100% { width: 100%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-on-scroll,
+            .reveal-scale,
+            .animate-fade-in-up,
+            .loader-logo-pulse,
+            .loader-progress-inner {
+                opacity: 1;
+                transform: none;
+                animation: none;
+            }
+        }
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -184,13 +302,30 @@
 </head>
 
 <body class="bg-background text-on-background antialiased pt-20">
+    <!-- Premium Brand Loading Screen -->
+    <div id="loadingScreen" class="loading-screen" aria-live="polite" aria-label="Loading Vehicle Point">
+        <div class="flex flex-col items-center text-center px-4">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center mb-5 loader-logo-pulse shadow-2xl backdrop-blur-sm">
+                <span class="material-symbols-outlined text-4xl sm:text-5xl text-white" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-headline-md font-bold tracking-tight text-white mb-2 flex items-center gap-2">
+                Vehicle Point
+            </h1>
+            <p class="text-xs sm:text-sm font-medium tracking-widest text-white/70 uppercase mb-6">
+                Premium Automotive Care
+            </p>
+            <div class="loader-progress-bar">
+                <div class="loader-progress-inner"></div>
+            </div>
+        </div>
+    </div>
     <!-- TopNavBar -->
     <header class="bg-surface-container-lowest fixed top-0 w-full border-b border-outline-variant z-50">
-        <div class="flex justify-between items-center h-20 max-w-container-max mx-auto px-gutter md:px-0">
-            <div
-                class="text-headline-md font-headline-md text-primary tracking-tight transition-opacity hover:opacity-80 cursor-pointer">
+        <div class="flex justify-between items-center h-20 max-w-container-max mx-auto px-4 sm:px-6 md:px-gutter">
+            <a class="text-xl sm:text-headline-md font-headline-md text-primary tracking-tight flex items-center gap-2" href="index.html">
+                <span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">directions_car</span>
                 Vehicle Point
-            </div>
+            </a>
             <nav class="hidden md:flex gap-6 items-center">
                 <a class="nav-link text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
                     href="index.html">Home</a>
@@ -202,23 +337,59 @@
                     href="contact.html">Contact</a>
             </nav>
             <button onclick="window.location.href='contact.html'"
-                class="bg-primary text-on-primary text-label-md font-label-md px-4 py-2 rounded hidden md:block hover:bg-primary-container hover:scale-[1.02] active:scale-[0.98] transition-all">
+                class="bg-primary text-on-primary text-label-md font-label-md px-5 py-2.5 rounded hidden md:block hover:bg-primary-container hover:scale-[1.02] active:scale-[0.98] transition-all">
                 Book Appointment
             </button>
-            <!-- Mobile Menu Toggle (Simplified) -->
-            <button class="md:hidden text-primary transition-transform hover:scale-110 active:scale-95">
-                <span class="material-symbols-outlined text-3xl">menu</span>
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" aria-label="Toggle navigation menu" class="md:hidden text-primary p-2 focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                <span id="mobileMenuIcon" class="material-symbols-outlined text-3xl">menu</span>
             </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-6 shadow-xl">
+            <div class="flex flex-col space-y-3">
+                <a class="flex items-center justify-between text-base font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container-low px-4 py-3 rounded transition-colors"
+                    href="index.html">
+                    <span>Home</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a class="flex items-center justify-between text-base font-semibold text-primary bg-surface-container-low px-4 py-3 rounded"
+                    href="services.html">
+                    <span>Services</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a class="flex items-center justify-between text-base font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container-low px-4 py-3 rounded transition-colors"
+                    href="gallery.html">
+                    <span>Gallery</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <a class="flex items-center justify-between text-base font-medium text-on-surface-variant hover:text-primary hover:bg-surface-container-low px-4 py-3 rounded transition-colors"
+                    href="contact.html">
+                    <span>Contact</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <div class="pt-3 flex flex-col gap-3">
+                    <button onclick="window.location.href='contact.html'"
+                        class="w-full bg-primary text-on-primary py-3.5 rounded font-label-md text-label-md font-semibold text-center hover:bg-primary-container transition-all">
+                        Book Appointment
+                    </button>
+                    <a href="https://wa.me/923253498175" target="_blank"
+                        class="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white py-3 rounded font-semibold text-sm hover:opacity-90 transition-all">
+                        <span class="material-symbols-outlined text-lg">chat</span>
+                        WhatsApp: 0325-3498175
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
     <main>
         <!-- Hero Section -->
         <section
-            class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto text-center border-b border-surface-variant">
+            class="py-12 sm:py-16 md:py-section-padding px-4 sm:px-6 md:px-gutter max-w-container-max mx-auto text-center border-b border-surface-variant">
             <h1
-                class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-6 animate-fade-in-up">
+                class="text-3xl sm:text-4xl md:text-headline-lg font-headline-lg text-on-surface mb-4 sm:mb-6 animate-fade-in-up">
                 Our Professional Services</h1>
-            <p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto animate-fade-in-up delay-100">
+            <p class="text-base sm:text-body-lg font-body-lg text-on-surface-variant max-w-3xl mx-auto animate-fade-in-up delay-100 leading-relaxed">
                 We provide all Mechanical services, complete Denting &amp; Painting services, and premium Car
                 Modification services for individual, corporate, and insurance vehicles. Our certified technicians ensure your vehicle performs at its peak and looks
                 exactly the way you want.
@@ -226,13 +397,13 @@
         </section>
         <!-- Mechanical Services Section (Bento Grid) -->
         <section
-            class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto border-b border-surface-variant">
-            <div class="flex items-center gap-4 mb-10 reveal-on-scroll">
-                <span class="material-symbols-outlined text-primary text-4xl"
+            class="py-12 sm:py-16 md:py-section-padding px-4 sm:px-6 md:px-gutter max-w-container-max mx-auto border-b border-surface-variant">
+            <div class="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 reveal-on-scroll">
+                <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl"
                     style="font-variation-settings: 'FILL' 1;">build</span>
-                <h2 class="text-headline-md font-headline-md text-on-surface">All Mechanical Services</h2>
+                <h2 class="text-2xl sm:text-headline-md font-headline-md text-on-surface">All Mechanical Services</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-base">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Large Item -->
                 <div
                     class="md:col-span-2 bg-surface-container-lowest border border-outline-variant p-8 flex flex-col justify-between group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-100 rounded-lg">
@@ -303,129 +474,162 @@
             </div>
         </section>
         <!-- Bodywork Section (Cards) -->
-        <section class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto">
-            <div class="flex items-center gap-4 mb-10 reveal-on-scroll">
-                <span class="material-symbols-outlined text-primary text-4xl"
+        <section class="py-12 sm:py-16 md:py-section-padding px-4 sm:px-6 md:px-gutter max-w-container-max mx-auto">
+            <div class="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 reveal-on-scroll">
+                <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl"
                     style="font-variation-settings: 'FILL' 1;">directions_car</span>
-                <h2 class="text-headline-md font-headline-md text-on-surface">All Denting &amp; Painting Services</h2>
+                <h2 class="text-2xl sm:text-headline-md font-headline-md text-on-surface">All Denting &amp; Painting Services</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div
                     class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-100">
-                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                    <div class="h-56 sm:h-64 bg-surface-variant relative overflow-hidden">
                         <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
                             data-alt="Paintless Dent Removal at our workshop."
                             src="assets/danting-3.jpeg" />
                     </div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">Paintless Dent Removal (PDR)
-                        </h3>
-                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Efficient and
-                            cost-effective removal of minor dents and dings without compromising your vehicle's original
-                            factory finish.</p>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl sm:text-headline-md font-headline-md text-on-surface mb-3">Paintless Dent Removal (PDR)
+                            </h3>
+                            <p class="text-body-md font-body-md text-on-surface-variant mb-6">Efficient and
+                                cost-effective removal of minor dents and dings without compromising your vehicle's original
+                                factory finish.</p>
+                        </div>
                         <button onclick="window.location.href='contact.html'"
-                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Request
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3.5 rounded hover:bg-primary-container transition-colors duration-300 min-h-[44px]">Request
                             PDR Quote</button>
                     </div>
                 </div>
                 <div
                     class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-200">
-                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                    <div class="h-56 sm:h-64 bg-surface-variant relative overflow-hidden">
                         <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
                             data-alt="Professional Respray work at our workshop."
                             src="assets/danting-4.jpeg" />
                     </div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">Professional Resprays &amp;
-                            Color Matching</h3>
-                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Computerized color
-                            matching and high-quality paint application in our state-of-the-art spray booths for a
-                            flawless finish.</p>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl sm:text-headline-md font-headline-md text-on-surface mb-3">Professional Resprays &amp;
+                                Color Matching</h3>
+                            <p class="text-body-md font-body-md text-on-surface-variant mb-6">Computerized color
+                                matching and high-quality paint application in our state-of-the-art spray booths for a
+                                flawless finish.</p>
+                        </div>
                         <button onclick="window.location.href='contact.html'"
-                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Book
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3.5 rounded hover:bg-primary-container transition-colors duration-300 min-h-[44px]">Book
                             Paint Consultation</button>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Car Modifications Section -->
-        <section class="py-section-padding px-margin-mobile md:px-0 max-w-container-max mx-auto">
-            <div class="flex items-center gap-4 mb-10 reveal-on-scroll">
-                <span class="material-symbols-outlined text-primary text-4xl"
+        <section class="py-12 sm:py-16 md:py-section-padding px-4 sm:px-6 md:px-gutter max-w-container-max mx-auto">
+            <div class="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-10 reveal-on-scroll">
+                <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl"
                     style="font-variation-settings: 'FILL' 1;">tune</span>
-                <h2 class="text-headline-md font-headline-md text-on-surface">Car Modification Services</h2>
+                <h2 class="text-2xl sm:text-headline-md font-headline-md text-on-surface">Car Modification Services</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div
                     class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-100">
-                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                    <div class="h-56 sm:h-64 bg-surface-variant relative overflow-hidden">
                         <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
                             data-alt="Custom car tuning"
                             src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80&w=800&h=600" />
                     </div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">Exterior &amp; Interior Modifications</h3>
-                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Transform the look
-                            of your vehicle with premium aftermarket body kits, interior upgrades, custom upholstery, and visual enhancements.
-                        </p>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl sm:text-headline-md font-headline-md text-on-surface mb-3">Exterior &amp; Interior Modifications</h3>
+                            <p class="text-body-md font-body-md text-on-surface-variant mb-6">Transform the look
+                                of your vehicle with premium aftermarket body kits, interior upgrades, custom upholstery, and visual enhancements.
+                            </p>
+                        </div>
                         <button onclick="window.location.href='contact.html'"
-                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Consult
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3.5 rounded hover:bg-primary-container transition-colors duration-300 min-h-[44px]">Consult
                             for Styling</button>
                     </div>
                 </div>
                 <div
                     class="border border-outline-variant rounded-lg flex flex-col overflow-hidden bg-surface-container-lowest group hover:border-primary hover:shadow-lg hover:-translate-y-1 transition-all duration-300 reveal-on-scroll delay-200">
-                    <div class="h-64 bg-surface-variant relative overflow-hidden">
+                    <div class="h-56 sm:h-64 bg-surface-variant relative overflow-hidden">
                         <img class="w-full h-full object-cover absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105"
                             data-alt="Engine tuning"
                             src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800&h=600" />
                     </div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-headline-md font-headline-md text-on-surface mb-3">PPF &amp; Car Wraps</h3>
-                        <p class="text-body-md font-body-md text-on-surface-variant mb-6 flex-grow">Protect your car's original paint with high-quality Paint Protection Film (PPF) or give it a completely new look with our premium car wrapping services.</p>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl sm:text-headline-md font-headline-md text-on-surface mb-3">PPF &amp; Car Wraps</h3>
+                            <p class="text-body-md font-body-md text-on-surface-variant mb-6">Protect your car's original paint with high-quality Paint Protection Film (PPF) or give it a completely new look with our premium car wrapping services.</p>
+                        </div>
                         <button onclick="window.location.href='contact.html'"
-                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3 rounded hover:bg-primary-container transition-colors duration-300">Explore Wraps &amp; PPF</button>
+                            class="w-full bg-primary text-on-primary text-label-md font-label-md py-3.5 rounded hover:bg-primary-container transition-colors duration-300 min-h-[44px]">Explore Wraps &amp; PPF</button>
                     </div>
                 </div>
             </div>
         </section>
         <!-- CTA Section -->
-        <section class="bg-primary text-on-primary py-16 px-margin-mobile md:px-0 mt-8 reveal-on-scroll">
+        <section class="bg-primary text-on-primary py-12 sm:py-16 px-4 sm:px-6 md:px-gutter mt-8 reveal-on-scroll">
             <div class="max-w-container-max mx-auto text-center flex flex-col items-center">
                 <h2
-                    class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg mb-4">
+                    class="text-2xl sm:text-3xl md:text-headline-lg font-headline-lg mb-4">
                     Ready for Professional Care?</h2>
-                <p class="text-body-lg font-body-lg mb-8 opacity-90 max-w-xl">Schedule your service today and experience
+                <p class="text-base sm:text-body-lg font-body-lg mb-8 opacity-90 max-w-xl">Schedule your service today and experience
                     the Vehicle Point standard of precision and reliability.</p>
                 <button onclick="window.location.href='contact.html'"
-                    class="bg-surface-container-lowest text-primary text-label-md font-label-md px-8 py-4 rounded font-bold hover:bg-surface-variant hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-sm">
+                    class="bg-surface-container-lowest text-primary text-label-md font-label-md px-8 py-4 rounded font-bold hover:bg-surface-variant hover:scale-[1.02] hover:-translate-y-0.5 active:scale-[0.98] transition-all shadow-sm shimmer-btn">
                     Book Your Appointment Now
                 </button>
             </div>
         </section>
     </main>
+    <!-- Floating WhatsApp Action Button for Mobile & Desktop with Pulse Ring -->
+    <a href="https://wa.me/923253498175" target="_blank" aria-label="Chat on WhatsApp"
+        class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white p-3.5 sm:px-5 sm:py-3.5 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 pulse-whatsapp-ring group">
+        <span class="material-symbols-outlined text-2xl transition-transform duration-300 group-hover:rotate-12">chat</span>
+        <span class="hidden sm:inline font-semibold text-sm">WhatsApp Us</span>
+    </a>
     <!-- Footer -->
-    <footer class="bg-surface-container-low w-full py-section-padding border-t border-outline-variant mt-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-base max-w-container-max mx-auto px-gutter md:px-0">
+    <footer class="bg-surface-container-low w-full py-10 sm:py-14 md:py-section-padding border-t border-outline-variant mt-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-container-max mx-auto px-4 sm:px-6 md:px-gutter">
             <div>
-                <div class="text-headline-md font-headline-md text-on-surface mb-4">Vehicle Point</div>
+                <div class="text-xl sm:text-headline-md font-headline-md text-on-surface mb-3 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+                    Vehicle Point
+                </div>
                 <p class="text-body-md font-body-md text-on-surface-variant">© 2024 Vehicle Point. All rights reserved.
                     Professional Automotive Care.</p>
             </div>
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col space-y-3">
                 <span
-                    class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer">Business
+                    class="text-label-md font-label-md text-on-surface-variant">Business
                     Hours: Mon-Sat 8:00 AM - 6:00 PM</span>
                 <span
-                    class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer">Plot No. 224, Block L, Arfat Town, North Nazimabad, Karachi</span>
-                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all duration-200"
-                    href="https://wa.me/923253498175" target="_blank">WhatsApp: 0325-3498175</a>
+                    class="text-label-md font-label-md text-on-surface-variant">Plot No. 224, Block L, Arfat Town, North Nazimabad, Karachi</span>
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-all duration-200 inline-flex items-center gap-1"
+                    href="https://wa.me/923253498175" target="_blank">
+                    <span class="material-symbols-outlined text-base">chat</span> WhatsApp: 0325-3498175
+                </a>
             </div>
-            <!-- Optional 3rd column for balance if needed, left empty as per JSON structure mapping loosely -->
-            <div></div>
+            <div class="flex flex-col space-y-2 sm:items-start md:items-end">
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="services.html">Services</a>
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="gallery.html">Gallery</a>
+                <a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="contact.html">Contact Us</a>
+            </div>
         </div>
     </footer>
     <script>
+        // Dismiss loading screen smoothly on window load
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loadingScreen');
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('hidden-loader');
+                }, 600);
+            }
+        });
+
         document.addEventListener("DOMContentLoaded", () => {
             // Respect prefers-reduced-motion
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -433,8 +637,8 @@
             if (!prefersReducedMotion) {
                 const observerOptions = {
                     root: null,
-                    rootMargin: '0px',
-                    threshold: 0.15
+                    rootMargin: '0px 0px -40px 0px',
+                    threshold: 0.12
                 };
 
                 const observer = new IntersectionObserver((entries, observer) => {
@@ -446,12 +650,49 @@
                     });
                 }, observerOptions);
 
-                const revealElements = document.querySelectorAll('.reveal-on-scroll');
+                const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-scale');
                 revealElements.forEach(el => observer.observe(el));
             } else {
-                // If user prefers reduced motion, make elements visible immediately
-                const revealElements = document.querySelectorAll('.reveal-on-scroll');
+                const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-scale');
                 revealElements.forEach(el => el.classList.add('is-visible'));
+            }
+
+            // Header scroll elevation
+            const header = document.querySelector('header');
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 20) {
+                        header.classList.add('shadow-md', 'backdrop-blur-md', 'bg-opacity-95');
+                    } else {
+                        header.classList.remove('shadow-md', 'backdrop-blur-md', 'bg-opacity-95');
+                    }
+                }, { passive: true });
+            }
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isHidden = mobileMenu.classList.contains('hidden');
+                    if (isHidden) {
+                        mobileMenu.classList.remove('hidden');
+                        if (mobileMenuIcon) mobileMenuIcon.textContent = 'close';
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        mobileMenu.classList.add('hidden');
+                        if (mobileMenuIcon) mobileMenuIcon.textContent = 'menu';
+                    }
+                });
             }
         });
     </script>

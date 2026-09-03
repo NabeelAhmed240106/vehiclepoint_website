@@ -1,0 +1,8 @@
+{
+  "name": "Vehicle Point",
+  "description": "Expert automotive care, mechanical repairs, denting & painting, and car modification services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
